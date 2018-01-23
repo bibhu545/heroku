@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Lobster+Two:700');
+
+h1{
+	color: brown;
+	font-family: 'Berkshire Swash', cursive;
+}
+a{
+	text-decoration: none;
+}
+body{
+	padding-top: 4%;
+	background: url(http://adventuretimeconsulting.com/wp-content/uploads/2016/05/Background-Texture-Images4.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.navbar-brand{
+	font-family: 'Berkshire Swash', cursive;
+}
+nav{
+	font-size: bold;
+	background-image: url(https://static.esea.net/global/images/users/829528.1496627806.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;	
+	/*background-color: rgba(0,0,0,0.8);*/
+}
+.btn{
+	box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+	border: 1px solid blue;
+}
+
+.btn:hover{
+	transform: scale(1.02);
+	transition-duration: 0.5s;	
+}
+.card{
+	border-radius: 10px;
+	border-color: blue;
+	box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+}
+.card .btn{
+
+}
+.card:hover{
+/*	transform: scale(1.01);
+	transition-duration: 0.5s;*/
+}
+.card img{
+	border-radius: 10px 10px 0 0;
+}
+.card .card-title h3{
+	font-family: 'Lobster Two', cursive;
+}
+.card-block{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.pagination{
+	padding-bottom: 5%;
+}
+.pagination .btn{
+	border-radius: 40px;
+}
+.current{
+	color: black;
+	font-weight: bold;
+}
+.details h1{
+	font-family: 'Lobster Two', cursive;
+}
+.details img{
+	border-color: blue;
+	border-radius: 10px;
+	border: 1px solid blue;
+	margin-bottom: 3%;
+}
+.form-control{
+	border: 1px solid black;
+	border-radius: 1px solid;
+	border-radius: 10px;
+}
+.search{
+	/*border: 1px;*/
+	border-radius: 50px;
+}
+.btn-outline-dark:hover{
+	border: 1px solid black;
+}
+.btn-outline-dark{
+	transition-duration: 0.1s;
+}
+.search-btn{
+	border-radius: 0 20px 20px 0;
+	border: 0px;
+	/*width: 40%;*/
+	/*border: 1px solid black;*/
+}
+.card-body{
+	padding-right: 10%;
+	padding-left: 10%;
+}
+.container-fluid{
+	/*background-color: red;*/
+	/*min-height: 20%;*/
+	background: url(https://static.esea.net/global/images/users/829528.1496627806.jpg);
+	padding: 2%;
+	/*height: 40%;*/
+	color: white;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed;*/
+	background-size: cover;	
+}

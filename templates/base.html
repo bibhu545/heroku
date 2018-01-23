@@ -1,0 +1,102 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Django</title>
+	<meta property="fb:app_id" content="113720975922981">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href=' {% static "css/base.css" %}'>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top"> <!-- bg-dark --> 
+<div class="container">
+  <a class="navbar-brand" href="/posts/">Django Blog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/posts/">All Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/posts/create/">New Post</a>
+      </li>   
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Sign Up</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+    </ul>
+  </div> 
+</div> 
+</nav>
+<br>
+	{% block FormBlock %}
+	    
+	{% endblock FormBlock %}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=113720975922981';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+{% block content %}
+	{% if messages %}
+		<div class="messages">
+			{% if messages %}
+			    <ul class="messages">
+			    	{% for message in messages %}
+			    		<li {% if messages.tags %} class="{{message.tag}}" {% endif %}>{% if "html_safe" in message.tags %}{{message}}{% else %}{{message}}{% endif %}</li>
+			    	{% endfor %}
+			    </ul>
+			{% endif %}
+		</div>
+	{% endif %}
+
+{# 	<div class="container">
+		<h1>{{title}} Template</h1>
+		{# <h3>{{object_list}}</h3> #}
+{# 		{% for obj in object_list %} 
+			{{obj.id}} : <a href="/posts/{{obj.id}}/">{{obj.title}}</a> <br>
+			{{obj.content}}<br>
+			{{obj.updated}}<br>
+			{{obj.timestamp}}<br><br>
+		{% endfor %} #}
+	{# </div>  #} #}
+{% endblock content %}	
+<div class="container-fluid">
+	<div class="container">
+		<center>
+			Copyright &copy; Django Blog @2018 &nbsp;&nbsp;
+			<i class="fa fa-facebook-official" aria-hidden="true"></i>&nbsp;&nbsp;
+			<i class="fa fa-twitter-square" aria-hidden="true"></i>&nbsp;&nbsp;
+			<i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;&nbsp;
+		</center>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.12/marked.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".content-markdown").each(function(){
+			var content = $(this).text()
+			// console.log(content)
+			var markedContent = marked(content)	
+			// $(this).html(markedContent)
+			console.log(markedContent)		
+		});
+
+	});
+</script>
+</body>
+</html>

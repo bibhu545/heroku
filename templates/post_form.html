@@ -1,0 +1,44 @@
+{% extends "base.html "%}
+
+{% block content %}
+	{% block FormBlock %}
+	    {{form.media}}
+	{% endblock FormBlock %}
+<div class="container">
+	<center><h1 style="font-family: font-family: 'Berkshire Swash', cursive;">Add Post</h1></center>
+	<form method="POST" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+		{# {{form.as_p}} #}
+		{{ form.non_field_errors }}
+		<div class="fieldWrapper form-group">
+		    {{ form.title.errors }}
+		    <label for="{{ form.title.id_for_label }}">Title :</label>
+		    {{ form.title }}
+		</div>
+		<div class="fieldWrapper form-group">
+		    {{ form.image.errors }}
+		    <label for="{{ form.image.id_for_label }}">Picture :</label>
+		    {{ form.image }}
+		</div>
+		<div class="fieldWrapper form-group">
+		    {{ form.content.errors }}
+		    <label for="{{ form.content.id_for_label }}">Content :</label>
+		    {{ form.content }}
+		</div>
+		<div class="fieldWrapper form-group">
+		    {{ form.draft.errors }}
+		    <label for="{{ form.draft.id_for_label }}">Draft :</label>
+		    {{ form.draft }}
+		</div>
+		<div class="fieldWrapper form-group">
+		    {{ form.publish.errors }}
+		    <label for="{{ form.publish.id_for_label }}">Publish :</label>
+		    {{ form.publish}}
+		</div>
+		<input type="submit" name="" value="Create Post" class="btn btn-primary">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/posts/{{form.instance.id}}/" class="btn btn-outline-dark" >Cancel</a>
+	</form>
+	<br>
+</div>
+{% endblock content %}

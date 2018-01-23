@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+		<div class="col-xs-11 col-md-7 offset-xs-1"> <!-- offset-sm-1 -->
+		
+		<!-- <h1>{{title}}</h1> -->
+		{# <h3>{{object_list}}</h3> #}
+		
+		{% for obj in object_list %} 
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					{% if obj.image %}
+						    
+						<img class="card-img-top" src="{{obj.image.url}}" alt="Card image cap" height="300">
+
+					{% endif %}
+				  	<br>
+				  	<div class="card-block">
+						<div class="card-title">
+							<h3>
+								<a href="/posts/{{obj.id}}/"  style="text-decoration: none;">{{obj.title}}</a> <br>
+								{% if obj.user.get_full_name %}
+
+								    <h5>Author : {{obj.user.get_full_name}}</h5>
+								
+								{% endif %}
+								<small>{{obj.publish}} 
+									{% if obj.draft %}
+		    
+		    							<h5>
+		    								
+		    									<span style="color:red;font-weight:bold">Draft</span>
+		    									{% if obj.publish > today %}
+		    									    
+		    									    Future Post
+		    									
+		    									{% endif %}
+		    								
+		    							</h5>
+		
+									{% endif %}<br>
+								</small> <!-- timesince -->
+							</h3>
+							<p  class="card-text">{{obj.content|linebreaks|truncatechars:180}}</p>
+							<a href="/posts/{{obj.id}}/" class="btn btn-primary">View More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+		</div>
+		<hr>
+		{% endfor %}
+
+		<br>
+		<center>
+		<div class="pagination">
+			
+		    <span class="step-links">
+		        {% if object_list.has_previous %}
+		            <a href="?page=1" class="btn btn-success">&laquo; First</a>
+		            <a href="?page={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}" class="btn btn-success">Previous</a>
+		        {% endif %}
+
+		        <span class="current">
+		            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+		        </span>
+
+		        {% if object_list.has_next %}
+		            <a href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}" class="btn btn-success">Next</a>
+		            <a href="?page={{ object_list.paginator.num_pages }}" class="btn btn-success">Last &raquo;</a>
+		        {% endif %}
+		    </span>
+		</div>
+		</center>
+		</div>
+		<div class="col-xs-11 col-md-4 offset-md-1 offset-xs-2">
+			<form method="GET" action="" class="form-inline">
+				<div class="container">
+					<div class="card position-fixed" style="width: 30%">
+		    		<div class="card-header"><h5>Search</h5></div> <!-- bg-success -->
+		    		<div class="card-body">
+			    		<div class="input-group">
+			    			<input type="text" name="q" placeholder="Enter Content" value="{{request.GET.q}}" class="form-control search">
+			    			<span class="input-group-btn">
+			    			<button type="submit" name="" class="btn btn-primary search-btn">&nbsp;&nbsp;<i class="fa fa-search" aria-hidden="true"></i> &nbsp;&nbsp;</button> 
+			    			</span>
+			    		</div>
+		    		</div>
+		  			</div>
+		  		</div>
+			</form>
+		</div>
+		</div>
+	</div>
+	
+
+{% endblock content %}

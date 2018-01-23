@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+	
+	<div class="col-xs-11 col-md-6 offset-md-2 offset-xs-1 details content-markdown">
+
+		<h1>{{instance.title}}</h1>
+		{% if instance.draft %}
+		    
+		    <h5><p><span style="color:red;font-weight:bold">Draft</span></p></h5>
+		
+		{% endif %}
+		{% if instance.user.get_full_name %}
+		    
+		    <h5>Author : {{instance.user.get_full_name}}</h5>
+		
+		{% endif %}
+		
+		<h5>{{instance.publish}}</h5>
+
+		{# {{request.build_absolute_uri}} #}
+		{# {{share_string}} #}
+
+		Share on &nbsp;&nbsp;
+		<a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}">
+			<i class="fa fa-facebook-square" aria-hidden="true" style="font-size: 26px;"></i>
+		</a>&nbsp;&nbsp;
+		<a href="https://twitter.com/home?status={{share_string}}%20{{request.build_absolute_uri}}">
+			<i class="fa fa-twitter-square" aria-hidden="true" style="font-size: 26px;"></i>
+		</a>&nbsp;&nbsp;
+		<!-- <a href='https://plus.google.com/share?url=http://codingforentrepreneurs.com'> -->
+		<a href="https://www.linkedin.com/shareArticle?mini=true&url={{request.build_absolute_uri}}&title={{instance.title}}&summary={{share_string}}&source={{request.build_absolute_uri}}">
+		<i class="fa fa-linkedin-square" aria-hidden="true" style="font-size: 26px;"></i>
+		</a>
+		<br>
+		<br> 
+		{% if instance.image %}
+		
+		<img src="{{ instance.image.url }}" class="img-responsive" height="350" width="620">    
+		
+		{% endif %}
+		
+		{{instance.content|linebreaks}}<br>
+		<br>
+
+	</div>
+	
+</div>
+<div class="row">
+	<div class="col-xs-11 col-md-6 offset-md-2 offset-xs-1">
+		<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+		<br>
+		<hr>
+		<div class="fb-comments" data-href="{{request.build_absolute_uri}}" data-numposts="5" data-colorscheme="light" data-order-by="Top"></div>
+	</div>
+</div>
+</div>
+{% endblock content %}
+
